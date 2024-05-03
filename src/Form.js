@@ -7,11 +7,12 @@ import * as yup from "yup";
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   name: yup.string().required(),
-  phone: yup
-    .string().min(10).max(10)
+phone: yup
+    .string()
+    .required("Mobile number is required")
     .matches(
-      /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      "Enter a valid phone number"
+      /^[0-9]{10}$/,
+      "Mobile number must be 10 digits and contain only numbers"
     )
     .required(),
   password: yup.string().min(8).max(15).required(),
